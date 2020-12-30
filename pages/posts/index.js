@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 
 import Layout from "../../components/layout";
-import Title from '../../components/title'
-import Link from 'next/link'
+import Title from "../../components/title";
+import Link from "next/link";
 
-
-
-export default function Posts({posts}) {
-
+export default function Posts({ posts }) {
   //Codigo utilizado para Client side rendering
   // const [posts, setPosts] = useState([]);
 
@@ -22,20 +20,22 @@ export default function Posts({posts}) {
 
   return (
     <Layout>
+      <Head>
+        <title>Landing Page de Post </title>
+        <meta name="description" content="En este curso aprenderas de nextjs" />
+      </Head>
       <Title>Posts Page</Title>
-      <div className='grid'>
-        {
-          posts.map(post => {
-            return (
-              <Link href={`/posts/${post.id}`} key={post.id}>
-                <a className='card'>
-                  <h3>{post.title}</h3>
-                  <p>{post.body}</p>
-                </a>
-              </Link>
-            )
-          })
-        }
+      <div className="grid">
+        {posts.map((post) => {
+          return (
+            <Link href={`/posts/${post.id}`} key={post.id}>
+              <a className="card">
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+              </a>
+            </Link>
+          );
+        })}
       </div>
       <style jsx>
         {`
@@ -76,14 +76,13 @@ export default function Posts({posts}) {
   );
 }
 
-export async function getServerSideProps(){
-     const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-     const posts = await res.json();
+export async function getServerSideProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = await res.json();
 
-     return {
-       props:{
-         posts
-       }
-     }
-
-    }
+  return {
+    props: {
+      posts,
+    },
+  };
+}
