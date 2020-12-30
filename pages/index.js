@@ -6,16 +6,15 @@ const Home = () => {
     <Layout>
       <Title>Hola Mundo</Title>
       <p>Aprendiendo NextJs</p>
-      <style JSX>
-        {" "}
+      <style jsx>
         {`
-                p{
-                    color: darkgray;
-                }
-                p:hover{
-                    color: darkred;
-                }
-            `}
+          p {
+            color: darkgray;
+          }
+          p:hover {
+            color: darkred;
+          }
+        `}
       </style>
     </Layout>
   );
